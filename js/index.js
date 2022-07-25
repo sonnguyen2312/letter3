@@ -49,17 +49,47 @@ document.getElementById('btnTinhDiem').onclick = function () {
     var diemLy = Number(document.getElementById('diemLy').value);
     var diemHoa = Number(document.getElementById('diemHoa').value);
     //output: number;
-    var diemTBKA = (diemToan + diemLy + diemHoa)/3;
+    var diemTBKA = tinhDiemTB(diemToan,diemLy,diemHoa);
     document.getElementById('diemTBKA').value = diemTBKA;
     // Tính điểm TB khối C
     var diemVan = Number(document.getElementById('diemVan').value);
     var diemSu = Number(document.getElementById('diemSu').value);
     var diemDia = Number(document.getElementById('diemDia').value);
     
-    var diemTBKC = (diemVan + diemSu + diemDia)/3;
+    var diemTBKC = tinhDiemTB(diemVan,diemSu,diemDia);
     document.getElementById('diemTBKC').value = diemTBKC;
 }
 
-function (diem1,diem2,diem3) {
+function tinhDiemTB(diem1,diem2,diem3) {
+    var dtb = 0;
+    dtb = (diem1 + diem2 + diem3)/3;
+    return dtb;
+}
+
+//Bài tập 1: xây dựng chức năng zoom in,zoom out cho 2 button
+domID('btnZoomInHome').onclick = function (){
     
+    zoomFontSize(5,'home');
+
+}
+domID('btnZoomOutHome').onclick = function (){
+    zoomFontSize(-5,'home');
+}
+//Bài tập 1: xây dựng chức năng zoom in,zoom out cho 2 button
+domID('btnZoomInText').onclick = function () {
+    zoomFontSize(5,'textContent')
+}
+domID('btnZoomOutText').onclick = function () {
+    zoomFontSize(-5,'textContent')
+}
+
+function zoomFontSize(size,id){
+    var tag = domID(id);
+    var fontSize = Number(tag.style.fontSize.replace('px',''));
+    fontSize += size;
+    tag.style.fontSize = fontSize + 'px';
+}
+//Viết chương trình trả về 1 thẻ sau khi DOM
+function domID(id){
+    return document.getElementById(id);
 }
